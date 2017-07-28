@@ -5,6 +5,12 @@ class Selleruser extends \think\Controller
 {
    public function index(){
        $user=db("user")->select();
+       foreach ($user as $k=>$v){
+           $temp=explode(",",$v['avatar']);
+           $temp=array_filter($temp);
+           $user[$k]['avatar']=$temp[0];
+       }
+
 
         $this->assign("users",$user);
         return $this->fetch();
@@ -51,7 +57,8 @@ class Selleruser extends \think\Controller
 
             exit();
         }
-       $res= db("user")->find($id);
+         $res= db("user")->find($id);
+
         $this->assign("user",$res);
 
         return $this->fetch();

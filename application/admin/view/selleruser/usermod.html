@@ -72,7 +72,9 @@
                             <button type="button" class="btn btn-success btn-xs uploadimg" data-id="avatar">上传头像</button>
                             <input type="file" class="uoload" id="avatar"  style="display: none">
                             <input name="avatar" value="{$user.avatar}"  hidden>
-                            <div class="divimg"></div>
+                            <div class="divimg">
+                                <img src="{:substr($user.avatar,0,strlen($user.avatar)-1) }">
+                            </div>
                             <p class="help-block">注意上传前压缩 大小 120*90.只能上传一张</p>
                         </div>
 
@@ -82,7 +84,11 @@
                             <button type="button" class="btn btn-success btn-xs uploadimg" data-id="pics">上传头像</button>
                             <input type="file"  class="uoload" id="pics"  multiple="true"  style="display: none">
                             <input name="pics" value="{$user.pics}" hidden>
-                            <div class="divimg"></div>
+                            <div class="divimg">
+                                {foreach :array_filter(explode(',',$user.pics)) as $pics}
+                                <img src="{$pics}">
+                                {/foreach}
+                            </div>
                             <p class="help-block">注意上传前压缩 大小 120*90.</p>
                         </div>
                         <div>
@@ -93,6 +99,10 @@
                             <label for="password">商家信息</label>
                             <input type="text" class="form-control" value="{$user.infos}"   name="infos" placeholder="-分割 ">
                         </div>
+                        <div>
+                            <label for="password">商家描述</label>
+                            <input type="text" class="form-control" value="{$user.description}"   name="description" placeholder="十个字以内啊 最好四个字 ">
+                        </div>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Check me out
@@ -102,7 +112,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">添加会员</button>
+                        <button type="submit" class="btn btn-primary">修改</button>
                     </div>
                 </form>
             </div>
