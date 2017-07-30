@@ -1,8 +1,12 @@
 <?php
 namespace app\api\controller;
 
+use think\Db;
+
 class Sellersetting extends Pubuliccon
 {
+
+
     //添加分类结构
     public function addtype()
     {
@@ -17,6 +21,7 @@ class Sellersetting extends Pubuliccon
 
 
             $validate = validate('Type');
+            $data['sellerid']=session("user")['id'];
 
             if (!$validate->scene($valitype[$temptype])->check($data)) {
 
@@ -24,9 +29,9 @@ class Sellersetting extends Pubuliccon
 
                 return json($res);
             }
-           $res= db("supports")->insert($data);
+           $res= Db::name("supports")->insertGetId($data);
             if($res){
-                $res=['status'=>'success','msg'=>'添加成功'] ;
+                $res=['status'=>'success','msg'=>'添加成功','id'=>$res] ;
 
                 return json($res);
             } else{
@@ -36,6 +41,15 @@ class Sellersetting extends Pubuliccon
             }
         }
 
+    }
+    //获取分类
+    public function gettype(){
+        $id=session("user")['id'] ? session("user")['id'] :false;
+        if(!$id){
+            return config('tologin');
+        }
+       $res= Db::name("supports")->where("sellerid",$id)->select();
+        return json($res);
     }
 
 }

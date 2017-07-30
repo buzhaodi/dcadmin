@@ -13,18 +13,20 @@ class User extends Validate
 {
     protected $rule = [
         //用户名 必填 只能是字母和汉字的组合 25位以内
-        'username'  =>  'require|alphaNum|max:25',
+        'username'  =>  'require|alphaNum|max:25|unique:user',
         //商家名 必填 只能是汉字和字母
         'name'=>'require|chsAlpha',
         //密码 必填 能是汉字、字母、数字和下划线_及破折号- 6-25位
         'password'=>'require|chsDash|min:6|max:25',
         'repassword'=>'require|chsDash|min:6|max:25',
-        'phone'=>'require|/^1\d{10}$/',
+        'phone'=>'require|/^1\d{10}$/|unique:user',
         'avatar'=>'require',
         'pics'=>'require'
     ];
     protected $message = [
-        'phone./^1\d{10}$/' => '请输入正确的手机号'
+        'phone./^1\d{10}$/' => '请输入正确的手机号',
+        'username.unique' => '用户名已存在',
+        'phone.unique' => '联系电话已存在'
 
     ];
     protected $scene = [

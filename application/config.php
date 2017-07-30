@@ -238,4 +238,12 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+    //设置有效ajax域名
+    'allowdomin'=>array(
+        'http://localhost:2230',
+        'http://127.0.0.1:2230',
+    ),
+    //设置登录API
+    'tologin'=> ['status'=>'error','msg'=>'数据库添加失败']
+
 ];

@@ -26,6 +26,13 @@
     <![endif]-->
     <!-- jQuery 2.2.3 -->
     <script src="/public/static/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <style>
+        .upimg{
+            width: 120px;
+            height: 80px;
+        }
+
+    </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -73,7 +80,7 @@
                             <input type="file" class="uoload" id="avatar"  style="display: none">
                             <input name="avatar" value="{$user.avatar}"  hidden>
                             <div class="divimg">
-                                <img src="{:substr($user.avatar,0,strlen($user.avatar)-1) }">
+                                <img class="upimg" src="{:substr($user.avatar,0,strlen($user.avatar)-1) }">
                             </div>
                             <p class="help-block">注意上传前压缩 大小 120*90.只能上传一张</p>
                         </div>
@@ -86,7 +93,7 @@
                             <input name="pics" value="{$user.pics}" hidden>
                             <div class="divimg">
                                 {foreach :array_filter(explode(',',$user.pics)) as $pics}
-                                <img src="{$pics}">
+                                <img class="upimg" src="{$pics}">
                                 {/foreach}
                             </div>
                             <p class="help-block">注意上传前压缩 大小 120*90.</p>
@@ -147,7 +154,7 @@
                             var temp=""
                                 $(that).next().next().html("")
                             data.Filename.forEach(function (val,index) {
-                                $(that).next().next().append("<img src='"+val+"'/>")
+                                $(that).next().next().append("<img class='upimg' src='"+val+"'/>")
                                 temp+=val+","
                             })
                                 console.log(temp)
