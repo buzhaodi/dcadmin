@@ -51,5 +51,20 @@ class Sellersetting extends Pubuliccon
        $res= Db::name("supports")->where("sellerid",$id)->select();
         return json($res);
     }
+    public function delete($id){
+        $map['id']=$id;
+        $map['sellerid']=session("user")['id'] ? session("user")['id'] :false;
+
+       $res= Db::name("supports")->where($map)->delete();
+        if($res){
+            $res=['status'=>'success','msg'=>'删除成功'] ;
+
+            return json($res);
+        } else{
+            $res=['status'=>'error','msg'=>'删除失败'] ;
+
+            return json($res);
+        }
+    }
 
 }

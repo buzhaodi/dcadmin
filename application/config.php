@@ -242,6 +242,7 @@ return [
     'allowdomin'=>array(
         'http://localhost:2230',
         'http://127.0.0.1:2230',
+        'http://192.168.1.91:2230'
     ),
     //设置登录API
     'tologin'=> ['status'=>'error','msg'=>'数据库添加失败']
