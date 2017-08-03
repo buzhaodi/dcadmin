@@ -42,9 +42,28 @@ class Menu extends Pubuliccon
         if(empty($data)){
             return json([]);
         }
+        $validate = validate('Food');
+        //如果是修改
+        if(!empty($data['id'])){
+            unset($data['src']);
+            unset($data['title']);
+            unset($data['desc']);
+            if(!$validate->check($data)){
+                return json(['status'=>'error','msg'=>$validate->getError()]);
+            }
+            if($data['sellerid']!=session('user')['id']){
+                return json(['status'=>'success','msg'=>'请登录']);
+            }
+            $res=Db::name('foods')->update($data);
+            if($res){
+                return json(['status'=>'success','msg'=>'修改成功']);
+            }else{
+                return json(['status'=>'error','msg'=>'修改数据出错']);
+            }
+        }
 
         $data['sellerid']=session('user')['id'];
-        $validate = validate('Food');
+
        if(!$validate->check($data)){
            return json(['status'=>'error','msg'=>$validate->getError()]);
        }
@@ -82,7 +101,6 @@ class Menu extends Pubuliccon
            $res[$k]['src']=$v['icon'];
            $res[$k]['title']=$v['name'];
            $res[$k]['desc']=$v['description'];
-           $res[$k]['url']='/menu/mod/'.$v['id'];
        }
        return json($res);
     }
@@ -97,6 +115,7 @@ class Menu extends Pubuliccon
         $data['url']="http://".$_SERVER['HTTP_HOST'].'/public/uploads/menu/'.$name.'.png';
         $data['urlsmall']="http://".$_SERVER['HTTP_HOST'].'/public/uploads/menu/'.$name.'small.png';
         $res['data']=$data;
+
         return json($res);
     }
 }

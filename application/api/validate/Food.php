@@ -37,11 +37,5 @@ class Food extends Validate
         'icon.require'=>'请上传图片',
         'type.require'=>'请选择分类',
     ];
-//    protected $scene = [
-//        'addnormal' => ['sellerid','type','description'],
-//        'addfullsubtraction' => ['sellerid','type','description','fullprice','subtraction'],
-//        'addiscount'=>['sellerid','type','description','discount'],
-//        'addspecial'=>['sellerid','type','description','special']
-//    ];
 
 }
