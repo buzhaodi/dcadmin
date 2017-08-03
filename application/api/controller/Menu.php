@@ -91,7 +91,11 @@ class Menu extends Pubuliccon
         $image = \think\Image::open(request()->file('img'));
         $name=time().rand(100,99999);
         //处理图片
+        $image->thumb(750, 750,\think\Image::THUMB_SCALING )->save('./public/uploads/menu/'.$name.'.png');
+        $image->thumb(150, 150,\think\Image::THUMB_SCALING )->save('./public/uploads/menu/'.$name.'small.png');
        //返回数据
+        $data['url']="http://".$_SERVER['HTTP_HOST'].'/public/uploads/menu/'.$name.'.png';
+        $data['urlsmall']="http://".$_SERVER['HTTP_HOST'].'/public/uploads/menu/'.$name.'small.png';
         $res['data']=$data;
         return json($res);
     }
