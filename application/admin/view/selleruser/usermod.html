@@ -75,6 +75,14 @@
                             <input type="text" class="form-control" id="phone" name="phone"   value="{$user.phone}" placeholder="联系电话">
                         </div>
                         <div class="form-group">
+                            <label for="password">起点价格</label>
+                            <input type="text" class="form-control" id="qidian" name="minPrice"   value="{$user.minPrice}" placeholder="联系电话">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">餐位费</label>
+                            <input type="text" class="form-control" id="deliveryPrice" name="deliveryPrice"   value="{$user.deliveryPrice}" placeholder="联系电话">
+                        </div>
+                        <div class="form-group">
                             <label for="avatar">商家头像</label>
                             <button type="button" class="btn btn-success btn-xs uploadimg" data-id="avatar">上传头像</button>
                             <input type="file" class="uoload" id="avatar"  style="display: none">
@@ -100,7 +108,7 @@
                         </div>
                         <div>
                             <label for="password">商家公告</label>
-                            <textarea class="form-control" value="{$user.bulletin}"   name="bulletin" placeholder=" "> </textarea>
+                            <textarea class="form-control"    name="bulletin" placeholder=" ">{$user.bulletin} </textarea>
                         </div>
                         <div>
                             <label for="password">商家信息</label>

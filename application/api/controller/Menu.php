@@ -104,6 +104,20 @@ class Menu extends Pubuliccon
        }
        return json($res);
     }
+
+    public function delfood($id){
+
+        if(!session('user')['id']){
+            return json(['status'=>'success','msg'=>'请登录']);
+        }
+        $res=Db::name('foods')->delete($id);
+        if($res){
+            return json(['status'=>'success','msg'=>'删除成功']);
+        }else{
+            return json(['status'=>'error','msg'=>'删除失败']);
+        }
+
+    }
     public function addimg(){
         //获得上传的图片
         $image = \think\Image::open(request()->file('img'));
