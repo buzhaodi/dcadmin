@@ -13,3 +13,4 @@
 function nymd5($str){
     return md5($str.'nyxx');
 }
+//过滤数组
